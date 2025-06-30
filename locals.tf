@@ -1,6 +1,6 @@
 locals {
-  ni_name = [for i in range(var.vm_count) : "${var.prefix}-vm-${i}-nic"]
-  nsg-rules = [
+  nic_names = [for i in range(var.vm_count) : "${var.prefix}-vm-${i}-nic"]
+  nsg_rules = [
     {
       name     = "SSH"
       priority = 1001
