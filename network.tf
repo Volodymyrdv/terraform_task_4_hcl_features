@@ -13,7 +13,7 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_network_interface" "main" {
-  for_each            = toset(local.ni_name)
+  for_each            = toset(local.nic_names)
   name                = each.key
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -31,7 +31,7 @@ resource "azurerm_network_security_group" "example" {
   resource_group_name = azurerm_resource_group.example.name
 
   dynamic "security_rule" {
-    for_each = local.nsg-rules
+    for_each = local.nsg_rules
     content {
       name                       = security_rule.value.name
       priority                   = security_rule.value.priority
